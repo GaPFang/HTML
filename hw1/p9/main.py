@@ -7,7 +7,7 @@ pyin = []
 for i in range(smallest, largest + 1):
     axis.append(i)
     pyin.append(int(input('')))
-median = int(input(''))
+median = input('')
 print("median number:" + median)
 plt.bar(axis, pyin)
 plt.title('Distribution of The Number of Updates')

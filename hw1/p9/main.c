@@ -84,7 +84,7 @@ int main() {
     }
     int smallestUpdates = head -> updates;
     int total = 0;
-    total += head -> count;
+    total += head -> updates * head -> count;
     printf("%d\n%d\n", smallestUpdates, largestUpdates);
     printf("%d\n", head -> count);
     node *cur = head -> larger;
@@ -95,7 +95,7 @@ int main() {
         }
         printf("%d\n", cur -> count);
         lastUpdates = cur -> updates;
-        total += cur -> count;
+        total += cur -> updates * cur -> count;
         cur = cur -> larger;
     }
     printf("%lf\n", (double)total / 1000);

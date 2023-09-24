@@ -14,6 +14,7 @@ int main() {
     int largestUpdates;
     double data[256][13];
     int y[256];
+    int check = 0;
     for (int i = 0; i < N; i++) {
         data[i][0] = 1;
         double mag = 1;
@@ -50,6 +51,14 @@ int main() {
                 correctCount = 0;
                 totalUpdates += 1;
             }
+        }
+        for (int i = 0; i < 256; i++) {
+            int tmp = 0;
+            for (int j = 0; j < 13; j++) {
+                tmp += data[i][j] * w[j];
+            }
+            tmp *= y[i];
+            if (tmp > 0) check++;
         }
         fprintf(stderr, "w_PLA_%d = (%lf, %lf, %lf, %lf, %lf, %lf, %lf, %lf, %lf, %lf, %lf, %lf, %lf)\n", k, w[0], w[1], w[2], w[3], w[4], w[5], w[6], w[7], w[8], w[9], w[10], w[11], w[12]);
         if (head == NULL) {
@@ -106,5 +115,6 @@ int main() {
         cur = cur -> larger;
     }
     printf("%lf\n", (double)total / 1000);
+    printf("%lf\n", (double)check / 1000);
     return 0;
 }

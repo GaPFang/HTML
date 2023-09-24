@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include <time.h> 
 
 typedef struct node {
@@ -14,7 +15,7 @@ int main() {
     double data[256][13];
     int y[256];
     for (int i = 0; i < N; i++) {
-        data[i][0] = 1;
+        data[i][0] = 11.26;
         for (int j = 1; j <= 12; j++) {
             scanf("%lf", &data[i][j]);
             data[i][j] *= 11.26;

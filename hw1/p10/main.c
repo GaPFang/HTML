@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <time.h> 
+#include <stdbool.h>
 
 typedef struct node {
     int updates, count;
@@ -85,21 +86,33 @@ int main() {
         }
     }
     int smallestUpdates = head -> updates;
-    int total = 0;
-    total += head -> updates * head -> count;
+    int totalCount = 0;
+    bool flag = true;
     printf("%d\n%d\n", smallestUpdates, largestUpdates);
     printf("%d\n", head -> count);
+    totalCount += head -> count;
     node *cur = head -> larger;
     int lastUpdates = head -> updates;
+    double median = 0;
     while (cur) {
+        totalCount += cur -> count;
+        if (totalCount >= 500) {
+            if (flag) {
+                if (totalCount == 500) {
+                    median = (cur -> updates + cur -> larger -> updates) / 2;
+                } else {
+                    median = cur -> updates;
+                }
+                flag = false;
+            }
+        }
         for (int i = 0; i < cur -> updates - lastUpdates - 1; i++) {
             printf("0\n");
         }
         printf("%d\n", cur -> count);
         lastUpdates = cur -> updates;
-        total += cur -> updates * cur -> count;
         cur = cur -> larger;
     }
-    printf("%lf\n", (double)total / 1000);
+    printf("%lf\n", median);
     return 0;
 }

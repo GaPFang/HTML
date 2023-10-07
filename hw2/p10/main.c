@@ -54,15 +54,15 @@ int main() {
             for (int j = 0; j < N; j++) {
                 if (x[j] > theta[i]) {
                     if (y[j] == 1) {
-                        Ein[0]++;
+                        Ein[0] += 1;
                     } else {
-                        Ein[1]++;
+                        Ein[1] += 1;
                     }
                 } else {
                     if (y[j] == 1) {
-                        Ein[1]++;
+                        Ein[1] += 1;
                     } else {
-                        Ein[0]++;
+                        Ein[0] += 1;
                     }
                 }
             }

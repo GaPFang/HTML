@@ -1,17 +1,13 @@
 import matplotlib.pyplot as plt
 
-smallest = int(input(''))
-largest = int(input(''))
-axis = []
-pyin = []
-for i in range(smallest, largest + 1):
-    axis.append(i)
-    pyin.append(int(input('')))
-median = input('')
-print("median number:" + median)
-plt.bar(axis, pyin)
-plt.title('Distribution of The Number of Updates')
-plt.xlabel("number of updates")
-plt.ylabel("count")
+Ein = []
+Eout = []
+for i in range(2000):
+    Ein.append(float(input('')))
+    Eout.append(float(input('')))
+plt.title('Distribution of Ein(g) and Eout(g)')
+plt.xlabel('Ein')
+plt.ylabel('Eout')
+plt.scatter(Ein, Eout)
 plt.show()
 

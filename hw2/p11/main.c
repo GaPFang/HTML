@@ -9,7 +9,7 @@
 
 #define N 8
 #define REPEAT 2000
-#define BUFFER_SIZE 60
+#define BUFFER_SIZE 128
 
 void sort(double arr[], int arrSize);
 

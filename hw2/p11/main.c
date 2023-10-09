@@ -83,10 +83,10 @@ int main() {
         double Eout = 0.5 - 0.4 * min_s + 0.4 * min_s * abs_min_theta;
         Eout_minus_Ein[r] = Eout - min_Ein;
         memset(buf, 0, strlen(buf));
-        sprintf(buf, "(s, theta, Ein, Eout) = (%d, %lf, %lf, %lf)\n", min_s, min_theta, min_Ein, Eout);
+        snprintf(buf, BUFFER_SIZE, "(s, theta, Ein, Eout) = (%d, %lf, %lf, %lf)\n", min_s, min_theta, min_Ein, Eout);
         write(outFd, buf, strlen(buf));
         memset(buf, 0, strlen(buf));
-        sprintf(buf, "%lf\n%lf\n", min_Ein, Eout);
+        snprintf(buf, BUFFER_SIZE, "%lf\n%lf\n", min_Ein, Eout);
         write(pyinFd, buf, strlen(buf));
     }
     sort(Eout_minus_Ein, REPEAT);

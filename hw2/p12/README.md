@@ -5,6 +5,6 @@ make clean
 ```
 
 
-s, theta, Ein and Eout is printed in w_PLA.txt  
+s, theta, Ein and Eout is printed in out.txt  
 median number is printed in terminal  
 scatter plot is plotted through matplotlib  

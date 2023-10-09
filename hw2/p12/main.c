@@ -50,10 +50,10 @@ int main() {
         double Eout = 0.5 - 0.4 * s + 0.4 * s * abs_theta;
         Eout_minus_Ein[r] = Eout - Ein;
         memset(buf, 0, strlen(buf));
-        sprintf(buf, "(s, theta, Ein, Eout) = (%d, %lf, %lf, %lf)\n", s, theta, Ein, Eout);
+        snprintf(buf, BUFFER_SIZE, "(s, theta, Ein, Eout) = (%d, %lf, %lf, %lf)\n", s, theta, Ein, Eout);
         write(outFd, buf, strlen(buf));
         memset(buf, 0, strlen(buf));
-        sprintf(buf, "%lf\n%lf\n", Ein, Eout);
+        snprintf(buf, BUFFER_SIZE, "%lf\n%lf\n", Ein, Eout);
         write(pyinFd, buf, strlen(buf));
     }
     sort(Eout_minus_Ein, REPEAT);

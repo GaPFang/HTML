@@ -11,7 +11,7 @@
 #define REPEAT 2000
 #define BUFFER_SIZE 60
 
-// void sort(double arr[], int arrSize);
+void sort(double arr[], int arrSize);
 
 int main() {
     srand(time(NULL));
@@ -61,14 +61,14 @@ int main() {
     return 0;
 }
 
-// void sort(double arr[], int arrSize) {
-//     for (int i = 1; i < arrSize; i++) {
-//         for (int j = 0; j < arrSize - i; j++) {
-//             if (arr[j] > arr[j + 1]) {
-//                 double tmp = arr[j];
-//                 arr[j] = arr[j + 1];
-//                 arr[j + 1] = tmp;
-//             }
-//         }
-//     }
-// }
+void sort(double arr[], int arrSize) {
+    for (int i = 1; i < arrSize; i++) {
+        for (int j = 0; j < arrSize - i; j++) {
+            if (arr[j] > arr[j + 1]) {
+                double tmp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = tmp;
+            }
+        }
+    }
+}

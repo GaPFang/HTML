@@ -5,10 +5,10 @@ trainSize = 256
 testSize = 4096
 repeat = 128
 
+f = open("out.txt", "w")
+
 E_in_hist = []
 E_out_hist = []
-
-f = open("EinEout.txt", "w")
 
 for r in range(repeat):
     train_y = np.random.randint(2, size = trainSize)
@@ -50,7 +50,7 @@ for r in range(repeat):
         if (y_hat_out[i] * test_y[i] < 0):
             E_out += 1
     E_out /= testSize
-    f.write("(E_in, E_out) = (" + str(E_in) + ", " + str(E_out) + ")\n")
+    f.write("(w_LIN, E_in, E_out) = (" + str(w_LIN) + ", " + str(E_in) + ", " + str(E_out) + ")\n")
     E_in_hist.append(E_in)
     E_out_hist.append(E_out)
 

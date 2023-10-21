@@ -5,6 +5,6 @@ make clean
 ```
 
 
-w_PLA is printed in w_PLA.txt  
-median number is printed in terminal  
+w_LIN, E_in and E_out are printed in out.txt  
+median E_in and E_out are printed in terminal  
 histogram is plotted through matplotlib

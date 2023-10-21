@@ -5,10 +5,10 @@ trainSize = 256
 testSize = 4096
 repeat = 128
 
+f = open("out.txt", "w")
+
 E_in_hist = []
 E_out_hist = []
-
-f = open("EinEout.txt", "w")
 
 for r in range(repeat):
     train_y = np.random.randint(2, size = trainSize)

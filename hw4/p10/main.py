@@ -31,30 +31,22 @@ for i in range(200):
 prob = problem(y, z_dict)
 
 best_E_in = 1
+E_in = np.zeros(len(_lambda))
 
 f = open("E_in.txt", "w")
 for i in range(len(_lambda)):
     _C = 1 / (2 * _lambda[i])
     param = parameter('-s 0 -c ' + str(_C) + ' -e 0.000001')
     m = train(prob, param)
-    save_model("w_log_lambda=" + str(_lambda[i]) + ".model", m)
-    f1 = open("w_log_lambda=" + str(_lambda[i]) + ".model", "r")
-    for j in range(6):
-        f1.readline()
-    w_log = []
-    for j in range(84):
-        w_log.append(float(f1.readline()))
-    y_log = []
-    E_in = 0
+    p_label, p_acc, p_val = predict(y, z_dict, m)
     for j in range(len(z_list)):
-        y_log.append(np.dot(z_list[j], w_log))
-        if (y_log[j] * y[j] < 0):
-            E_in += 1
-    E_in /= len(z_list)
-    if (E_in < best_E_in):
-        best_E_in = E_in
+        if (p_label[j] != y[j]):
+            E_in[i] += 1
+    E_in[i] /= len(z_list)
+    if (E_in[i] < best_E_in):
+        best_E_in = E_in[i]
         best_lambda = _lambda[i]
-    f.write("E_in(lambda=" + str(_lambda[i]) + ")=" + str(E_in) + '\n')
+    f.write("E_in(lambda=" + str(_lambda[i]) + ")=" + str(E_in[i]) + '\n')
 
 print("lambda* is " + str(best_lambda) + ", log_10(lambda*) is " + str(np.log10(best_lambda)) + ", E_in is " + str(best_E_in))
         

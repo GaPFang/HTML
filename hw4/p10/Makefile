@@ -2,4 +2,4 @@ main:
 	python3 main.py
 
 clean:
-	rm -rf E_in.txt
+	rm -rf E_in.txt stdout.txt

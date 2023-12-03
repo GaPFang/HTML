@@ -6,7 +6,6 @@ import random
 import matplotlib.pyplot as plt
 
 C = [0.01, 0.1, 1, 10, 100]
-repeat = 1000
 
 Eout_fd = open("Eout.txt", "w")
 y_train, x_train = svm_read_problem('../train.txt')
@@ -31,7 +30,11 @@ for c in C:
     param = svm_parameter('-s 0 -t 2 -g 1 -q -c ' + str(c))
     m = svm_train(train_prob, param)
     p_labs, p_acc, p_vals = svm_predict(y_test, x_test, m)
-    Eout = (100 - p_acc[0]) / 100
+    Eout = 0
+    for j in range(len(p_labs)):
+        if (p_labs[j] * y_test[j] < 0):
+            Eout += 1
+    Eout /= len(p_labs)
     if Eout < min_Eout:
         min_Eout = Eout
         min_C = c

@@ -16,7 +16,6 @@ for i in range(len(y_train)):
         y_train[i] = -1
 train_prob = svm_problem(y_train, x_train)
 
-f = open("w.txt", "w")
 w_norm = np.zeros(5)
 for i in range(5):
     param = svm_parameter('-s 0 -t 2 -g 1 -q -c ' + str(C[i]))
@@ -24,19 +23,29 @@ for i in range(5):
     SV_coefs = m.get_sv_coef()
     SVs = m.get_SV()
     nSV = m.get_nr_sv()
-    w = np.zeros(36)
+    wTw = 0
     for j in range(nSV):
-        for k in SVs[j].keys():
-            w[k - 1] += SV_coefs[j][0] * SVs[j][k]
-    w_norm[i] = np.linalg.norm(w)
+        for k in range(nSV):
+            # w = np.zeros(36)
+            # for j in range(nSV):
+            #     for k in SVs[j].keys():
+            #         w[k - 1] += SV_coefs[j][0] * SVs[j][k]
+            xn_xm_norm_square = 0
+            for l in range(36):
+                if l in SVs[j].keys() and l in SVs[k].keys():
+                    xn_xm_norm_square += (SVs[j][l] - SVs[k][l]) ** 2
+                elif l in SVs[j].keys():
+                    xn_xm_norm_square += SVs[j][l] ** 2
+                elif l in SVs[k].keys():
+                    xn_xm_norm_square += SVs[k][l] ** 2
+            wTw += SV_coefs[j][0] * SV_coefs[k][0] * np.exp(-1 * xn_xm_norm_square)
+    w_norm[i] = np.sqrt(wTw)
     print("C = " + str(C[i]) + ", ||w|| = " + str(w_norm[i]))
-    f.write("C = " + str(C[i]) + ", w = " + str(w) + "\n")
-f.close()
 
 C_scaled = np.arange(len(C))
 plt.plot(C_scaled, w_norm, label='Line Chart')
 plt.xticks(C_scaled, C)
-plt.title('P13: C vs. ||w||')
+plt.title('P12: C vs. ||w||')
 plt.xlabel('C')
 plt.ylabel('||w||')
 plt.show()

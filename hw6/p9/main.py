@@ -42,6 +42,7 @@ def impurity(y):
     return error
 
 def CandRT_train(train_x, train_y, theta):
+    _theta = []
     endFlag = True
     for i in range(len(train_y) - 1):
         if train_y[i] != train_y[i + 1]:
@@ -60,11 +61,13 @@ def CandRT_train(train_x, train_y, theta):
         min_x.append(min(train_x, key=lambda x: x[i])[i])
         max_x.append(max(train_x, key=lambda x: x[i])[i])
     for i in range(len(theta)):
+        _theta.append([])
         for j in range(len(theta[i])):
             left_y = []
             right_y = []
             if theta[i][j] < min_x[i] or theta[i][j] > max_x[i]:
                 continue
+            _theta[i].append(theta[i][j])
             for k in range(len(train_y)):
                 if train_x[k][i] < theta[i][j]:
                     left_y.append(train_y[k])
@@ -89,8 +92,8 @@ def CandRT_train(train_x, train_y, theta):
     root = Node()
     root.theta = bestTheta
     root.feature = bestFeature
-    root.left = CandRT_train(left_x, left_y, theta)
-    root.right = CandRT_train(right_x, right_y, theta)
+    root.left = CandRT_train(left_x, left_y, _theta)
+    root.right = CandRT_train(right_x, right_y, _theta)
     return root
 
 def CandRT_predict(root, x):

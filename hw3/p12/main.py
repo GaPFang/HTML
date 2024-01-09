@@ -24,6 +24,7 @@ def gra_Ein(y, w, x):
     return gra_E_in
 
 for r in range(repeat):
+    np.random.seed(r)
     train_y = np.concatenate([np.random.randint(2, size = trainSize - 16), np.ones(16)])
     train_x = []
     for i in range(trainSize - 16):
@@ -85,7 +86,7 @@ print("E_out(linear) median: " + str(np.median(E_LIN_out)))
 print("E_out(logistic) median: " + str(np.median(E_LOG_out)))
 
 plt.scatter(E_LIN_out, E_LOG_out)
-plt.title('Histogram of Eout(linear) and Eout(logistic)')
+plt.title('P12: Histogram of Eout(linear) and Eout(logistic)')
 plt.xlabel("E_out(linear)")
 plt.ylabel("E_out(logistic)")
 plt.show()

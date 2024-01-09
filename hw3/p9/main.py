@@ -11,6 +11,7 @@ E_in_hist = []
 E_out_hist = []
 
 for r in range(repeat):
+    np.random.seed(r)
     train_y = np.random.randint(2, size = trainSize)
     train_x = []
     for i in range(trainSize):
@@ -60,5 +61,5 @@ bins = np.linspace(0.1, 0.3, 50)
 plt.hist(E_in_hist, bins, alpha=0.5, label='E_in')
 plt.hist(E_out_hist, bins, alpha=0.5, label='E_out')
 plt.legend(loc='upper right')
-plt.title('Histogram of E_in and E_out')
+plt.title('P9: Histogram of E_in and E_out')
 plt.show()

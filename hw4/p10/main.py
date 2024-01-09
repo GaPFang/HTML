@@ -38,7 +38,7 @@ for i in range(len(_lambda)):
     m = train(prob, param)
     p_label, p_acc, p_val = predict(y, z, m)
     E_in.append((100 - p_acc[0]) / 100)
-    if (E_in[i] < best_E_in):
+    if (E_in[i] <= best_E_in):
         best_E_in = E_in[i]
         best_lambda = _lambda[i]
 f = open("E_in.txt", "w")

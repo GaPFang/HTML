@@ -37,7 +37,7 @@ best_lambda = np.zeros(repeat)
 
 f = open("E_in.txt", "w")
 for r in range(repeat):
-    random.seed(r)
+    # random.seed(10 * r)
     sample = random.sample(range(N), D_train_size)
     # sample.sort()
     y_train = []
@@ -59,7 +59,7 @@ for r in range(repeat):
         m = train(prob, param)
         p_label, p_acc, p_val = predict(y_val, z_val, m)
         E_val.append((100 - p_acc[0]) / 100)
-        if (E_val[i] < best_E_val[r]):
+        if (E_val[i] <= best_E_val[r]):
             best_E_val[r] = E_val[i]
             best_lambda[r] = _lambda[i]
     f.write("log_10(lambda*) is " + str(np.log10(best_lambda[r])) + ", E_in is " + str(best_E_val[r]) + "\n")
@@ -68,4 +68,6 @@ f.close()
 bins = np.linspace(-6.5, 2.5, 10)
 plt.hist(np.log10(best_lambda), bins, label='log_10(lambda*)')
 plt.title('P11: Histogram of log_10(lambda*)')
+plt.xlabel('log_10(lambda*)')
+plt.ylabel('#')
 plt.show()

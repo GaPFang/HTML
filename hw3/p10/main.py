@@ -11,6 +11,7 @@ E_in_hist = []
 E_out_hist = []
 
 for r in range(repeat):
+    np.random.seed(r)
     train_y = np.random.randint(2, size = trainSize)
     train_x = []
     for i in range(trainSize):
@@ -58,9 +59,9 @@ f.close()
 print("E_in median: " + str(np.median(E_in_hist)))
 print("E_out median: " + str(np.median(E_out_hist)))
 
-bins = np.linspace(0, 0.07, 100)
+bins = np.linspace(0, 0.07, 70)
 plt.hist(E_in_hist, bins, alpha=0.5, label='E_in')
 plt.hist(E_out_hist, bins, alpha=0.5, label='E_out')
 plt.legend(loc='upper right')
-plt.title('Histogram of E_in and E_out')
+plt.title('P10: Histogram of E_in and E_out')
 plt.show()

@@ -36,7 +36,7 @@ best_lambda = np.zeros(repeat)
 
 f = open("E_in.txt", "w")
 for r in range(repeat):
-    np.random.seed(r)
+    np.random.seed(2 * r)
     mess = np.random.permutation(N).tolist()
     fold = [mess[:int(N/5)]] + [mess[int(N/5):int(2 * N/5)]] + [mess[int(2 * N/5):int(3 * N/5)]] + [mess[int(3 * N/5):int(4 * N/5)]] + [mess[int(4 * N/5):N]]
     E_CV = np.zeros(5).tolist()
